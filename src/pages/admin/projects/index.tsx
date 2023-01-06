@@ -6,7 +6,7 @@ import DataTable from "components/data/DataTable";
 import Link from "next/link";
 
 export default function DataTables() {
-  const { data } = useFetch("http://localhost:8000/projects", {}, []);
+  const { data, loading } = useFetch("http://localhost:8000/projects", {}, []);
 
   return (
     <AdminLayout>
@@ -20,6 +20,7 @@ export default function DataTables() {
             <Button>Add New</Button>
           </Link>
           <DataTable
+            loading={loading}
             columns={[
               { label: "id", name: "id" },
               { label: "title", name: "title" },
