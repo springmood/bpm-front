@@ -11,10 +11,10 @@ export default function DataTables() {
 
   const router = useRouter();
 
-  const { post } = useFetch("http://localhost:8000/project/create", {});
+  const { post } = useFetch("http://localhost:8000/task/create", {});
   const handleCreateProject = () => {
     post({ title, desc });
-    router.push("/admin/projects");
+    router.push(`/admin/projects/${router.query.project_id}/tasks`);
   };
 
   return (

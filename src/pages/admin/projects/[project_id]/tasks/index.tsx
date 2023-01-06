@@ -4,8 +4,11 @@ import AdminLayout from "layouts/admin";
 import useFetch from "use-http";
 import DataTable from "components/data/DataTable";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function ProjectTasks() {
+  const route = useRouter();
+
   const { data, loading } = useFetch("http://localhost:8000/tasks", {}, []);
 
   return (
@@ -16,7 +19,7 @@ export default function ProjectTasks() {
           columns={{ sm: 1, md: 1 }}
           spacing={{ base: "20px", xl: "20px" }}
         >
-          <Link href={"/admin/projects/form"}>
+          <Link href={`/admin/projects/${route.query.project_id}/tasks/form`}>
             <Button>Add New</Button>
           </Link>
           <DataTable
