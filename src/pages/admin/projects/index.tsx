@@ -5,7 +5,7 @@ import useFetch from "use-http";
 import DataTable from "components/data/DataTable";
 import Link from "next/link";
 
-export default function DataTables() {
+export default function Projects() {
   const { data, loading } = useFetch("http://localhost:8000/projects", {}, []);
 
   return (
@@ -25,6 +25,14 @@ export default function DataTables() {
               { label: "id", name: "id" },
               { label: "title", name: "title" },
               { label: "desc", name: "desc" },
+              {
+                label: "tasks",
+                render: (row, index) => (
+                  <Link href={`/admin/projects/${row.id}/tasks`}>
+                    <Button backgroundColor={"orange.300"}>Tasks</Button>
+                  </Link>
+                ),
+              },
             ]}
             rows={data?.data}
           />
