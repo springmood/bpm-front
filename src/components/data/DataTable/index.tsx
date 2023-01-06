@@ -3,8 +3,9 @@ import Card from "components/card/Card";
 import { Flex, Text, useColorModeValue, Table, Tr, Thead, Tbody, Td, Th, Progress } from "@chakra-ui/react"; // prettier-ignore
 
 type ColumnType = {
-  name: string;
+  name?: string;
   label: string;
+  render?: (row: RowType, index: Number) => JSX.Element;
 };
 
 type RowType = {
@@ -73,7 +74,7 @@ export default function DataTable(props: DataTableProps) {
                       minW={{ sm: "150px", md: "200px", lg: "auto" }}
                       borderColor="transparent"
                     >
-                      {row[column.name]}
+                      {column.render ? column.render(row, i) : row[column.name]}
                     </Td>
                   ))}
                 </Tr>
