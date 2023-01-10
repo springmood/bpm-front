@@ -33,6 +33,14 @@ export default function Projects() {
                   </Link>
                 ),
               },
+              {
+                label: "Dashboard",
+                render: (row, index) => (
+                  <Link href={`/admin/projects/${row.id}/dashboard`}>
+                    <Button backgroundColor={"green.500"}>Dashboard</Button>
+                  </Link>
+                ),
+              },
             ]}
             rows={data?.data}
           />
